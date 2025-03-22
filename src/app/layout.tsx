@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${montserrat.variable} font-montserrat`}>{children}</body>
+      <body className={`${montserrat.variable} font-montserrat`}>{children}<Analytics /></body>
     </html>
   );
 }
