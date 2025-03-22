@@ -6,4 +6,16 @@ declare namespace JSX {
       [key: string]: any;
     }
   }
+}
+
+declare module '@splinetool/react-spline' {
+  import { ComponentType } from 'react';
+
+  interface SplineProps {
+    scene: string;
+    onLoad?: (splineApp: unknown) => void;
+  }
+
+  const Spline: ComponentType<SplineProps>;
+  export default Spline;
 } 
