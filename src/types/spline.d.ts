@@ -3,7 +3,7 @@ declare namespace JSX {
     'spline-viewer': {
       url: string;
       'loading-anim-type'?: string;
-      [key: string]: any;
+      [key: string]: string | undefined;
     }
   }
 }
