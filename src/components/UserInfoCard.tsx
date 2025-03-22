@@ -23,12 +23,12 @@ export default function UserInfoCard() {
         // Get the initial session
         const { data: { session }, error: sessionError } = await supabase.auth.getSession();
         if (sessionError) throw sessionError;
-
+        
         if (!session) {
-          router.replace('/auth');
-          return;
+          router.push('/auth');
+          return undefined;
         }
-
+        
         setUserInfo({
           email: session.user.email || 'No email provided',
           created_at: new Date(session.user.created_at).toLocaleDateString(),
@@ -36,18 +36,19 @@ export default function UserInfoCard() {
             ? new Date(session.user.last_sign_in_at).toLocaleDateString()
             : 'Never'
         });
+        setLoading(false);
 
         // Subscribe to auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
-          async (event, currentSession) => {
+          async (event, session) => {
             if (event === 'SIGNED_OUT') {
               router.replace('/auth');
-            } else if (currentSession) {
+            } else if (session) {
               setUserInfo({
-                email: currentSession.user.email || 'No email provided',
-                created_at: new Date(currentSession.user.created_at).toLocaleDateString(),
-                last_sign_in: currentSession.user.last_sign_in_at 
-                  ? new Date(currentSession.user.last_sign_in_at).toLocaleDateString()
+                email: session.user.email || 'No email provided',
+                created_at: new Date(session.user.created_at).toLocaleDateString(),
+                last_sign_in: session.user.last_sign_in_at 
+                  ? new Date(session.user.last_sign_in_at).toLocaleDateString()
                   : 'Never'
               });
             }
@@ -59,7 +60,8 @@ export default function UserInfoCard() {
         };
       } catch (error) {
         console.error('Error initializing auth:', error);
-        router.replace('/auth');
+        router.push('/auth');
+        return undefined;
       } finally {
         setLoading(false);
       }
