@@ -169,7 +169,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               onClick={() => router.push('/')} 
               className="text-lg font-montserrat-semibold cursor-pointer hover:text-gray-300 transition-colors"
             >
-              Children's Rights
+              Children&apos;s Rights
             </h1>
           </div>
           <div className="flex items-center space-x-4">

@@ -82,7 +82,7 @@ export default function Home() {
             <div className="mt-8 sm:mt-12 p-6 bg-white/20 backdrop-blur rounded-xl text-center">
               <h3 className="text-xl sm:text-2xl font-bold mb-4">Join Our Learning Community</h3>
               <p className="text-sm sm:text-base mb-6 max-w-2xl mx-auto">
-                Start your journey in understanding and promoting children's rights. 
+                Start your journey in understanding and promoting children&apos;s rights. 
                 Sign up now to access our interactive learning modules and resources.
               </p>
               <motion.button
@@ -156,7 +156,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-6 sm:py-8 px-4 sm:px-6 md:px-8 bg-black/40 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto text-center text-white/80">
-          <p className="text-sm sm:text-base">© 2024 Children's Rights Education. All rights reserved.</p>
+          <p className="text-sm sm:text-base">© 2024 Children&apos;s Rights Education. All rights reserved.</p>
           <div className="mt-4 flex justify-center gap-4 sm:gap-8 text-sm sm:text-base">
             <a href="#" className="hover:text-white">Privacy Policy</a>
             <a href="#" className="hover:text-white">Terms of Service</a>
