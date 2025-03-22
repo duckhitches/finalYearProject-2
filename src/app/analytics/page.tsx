@@ -76,12 +76,12 @@ export default function Analytics() {
       try {
         const { data: { session }, error: sessionError } = await supabase.auth.getSession();
         if (sessionError) throw sessionError;
-
+        
         if (!session) {
-          router.replace('/auth');
-          return;
+          router.push('/auth');
+          return undefined;
         }
-
+        
         setUserId(session.user.id);
         await fetchLearningStats(session.user.id);
 
@@ -102,6 +102,7 @@ export default function Analytics() {
       } catch (error) {
         logError('Error initializing auth:', error);
         router.replace('/auth');
+        return undefined;
       } finally {
         setIsLoading(false);
       }
