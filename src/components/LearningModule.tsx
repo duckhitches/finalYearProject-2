@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
-import { Category, categories } from '@/api/modules';
+import { categories } from '@/api/modules';
 import ProgressBar from './ProgressBar';
 
 interface ModuleProgress {

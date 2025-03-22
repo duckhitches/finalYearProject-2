@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function WavyText() {
     const [text] = useState("Education");

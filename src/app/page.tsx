@@ -48,7 +48,6 @@ export default function Home() {
   });
 
   const scrollContainerRef = useRef(null);
-  const { scrollXProgress } = useScroll({ container: scrollContainerRef });
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">

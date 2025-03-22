@@ -7,7 +7,7 @@ import type { Variants } from 'framer-motion';
 import { useRouter, usePathname } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import type { User } from '@supabase/supabase-js';
-import Link from 'next/link';
+
 
 // Menu items configuration
 const menuItems = [
@@ -46,25 +46,6 @@ const menuListVariants: Variants = {
     transition: { 
       staggerChildren: 0.05,
       staggerDirection: -1
-    }
-  }
-};
-
-const sidebarVariants: Variants = {
-  open: {
-    x: 0,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 30
-    }
-  },
-  closed: {
-    x: "-100%",
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 30
     }
   }
 };

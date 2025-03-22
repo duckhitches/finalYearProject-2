@@ -12,7 +12,7 @@ import { Topic, getTopic, topics as allTopics } from '@/api/modules';
 // Error logging utility
 const logError = (message: string, error: unknown): void => {
   if (process.env.NODE_ENV === 'development') {
-    /* eslint-disable no-console */
+    
     console.error(message, error);
     /* eslint-enable no-console */
   }
@@ -28,7 +28,6 @@ export default function LearningPage({ userId, onProgressUpdate }: { userId: str
   const [completed, setCompleted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-  const [draggedItems, setDraggedItems] = useState<{ [key: string]: string }>({});
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -40,7 +39,6 @@ export default function LearningPage({ userId, onProgressUpdate }: { userId: str
         // Reset state when topic changes
         setSelectedAnswer(null);
         setShowCorrectAnswer(false);
-        setDraggedItems({});
         
         // Fetch topic from the module API
         const topicData = await getTopic(topicId);
@@ -86,7 +84,7 @@ export default function LearningPage({ userId, onProgressUpdate }: { userId: str
     };
     
     loadTopic();
-  }, [topicId, userId]);
+  }, [topicId, userId, onProgressUpdate]);
 
   const handleMarkAsCompleted = async () => {
     try {
@@ -126,24 +124,6 @@ export default function LearningPage({ userId, onProgressUpdate }: { userId: str
     } catch (err) {
       logError('Error marking module as completed:', err);
     }
-  };
-
-  const handleDragStart = (e: React.DragEvent, item: string) => {
-    e.dataTransfer.setData('text', item);
-  };
-
-  const handleDrop = (e: React.DragEvent, zone: string) => {
-    e.preventDefault();
-    const item = e.dataTransfer.getData('text');
-    setDraggedItems(prev => ({ ...prev, [item]: zone }));
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
-  const checkDragDropAnswers = (correctPairings: { [key: string]: string }) => {
-    return Object.entries(draggedItems).every(([item, zone]) => correctPairings[item] === zone);
   };
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
